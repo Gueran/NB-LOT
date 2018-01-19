@@ -1,0 +1,12 @@
+bin/gnu_cxxinitialize.o: gnu/gnu_cxxinitialize.c \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/nuttx/config.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/debug.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/nuttx/compiler.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/syslog.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stdint.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/arch/types.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/limits.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/arch/limits.h \
+ /usr/lib/gcc/arm-none-eabi/4.9.3/include/stdarg.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stdbool.h \
+ /home/lbf/NB_LOT/NB-Iot/apps/include/platform/cxxinitialize.h

@@ -1,0 +1,120 @@
+libxx_cxapurevirtual.o: libxx_cxapurevirtual.cxx \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/cxx/cassert \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/assert.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/nuttx/compiler.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/nuttx/config.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stdint.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/arch/types.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/limits.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/arch/limits.h
+libxx_eabi_atexit.o: libxx_eabi_atexit.cxx \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/nuttx/config.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/cxx/cstdlib \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stdlib.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/nuttx/compiler.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/sys/types.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stdint.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/arch/types.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/limits.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/arch/limits.h libxx.hxx
+libxx_cxa_atexit.o: libxx_cxa_atexit.cxx \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/nuttx/config.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/cxx/cassert \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/assert.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/nuttx/compiler.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stdint.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/arch/types.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/limits.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/arch/limits.h libxx.hxx \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/cxx/cstdlib \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stdlib.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/sys/types.h
+libxx_delete.o: libxx_delete.cxx \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/nuttx/config.h libxx.hxx \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/cxx/cstdlib \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stdlib.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/nuttx/compiler.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/sys/types.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stdint.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/arch/types.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/limits.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/arch/limits.h
+libxx_delete_sized.o: libxx_delete_sized.cxx \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/nuttx/compiler.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/nuttx/config.h libxx.hxx \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/cxx/cstdlib \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stdlib.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/sys/types.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stdint.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/arch/types.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/limits.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/arch/limits.h
+libxx_deletea.o: libxx_deletea.cxx \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/nuttx/config.h libxx.hxx \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/cxx/cstdlib \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stdlib.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/nuttx/compiler.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/sys/types.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stdint.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/arch/types.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/limits.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/arch/limits.h
+libxx_deletea_sized.o: libxx_deletea_sized.cxx \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/nuttx/config.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/nuttx/compiler.h libxx.hxx \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/cxx/cstdlib \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stdlib.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/sys/types.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stdint.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/arch/types.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/limits.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/arch/limits.h
+libxx_new.o: libxx_new.cxx \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/nuttx/config.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/cxx/cstddef \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/nuttx/compiler.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stddef.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/sys/types.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stdint.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/arch/types.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/limits.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/arch/limits.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/debug.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/syslog.h \
+ /usr/lib/gcc/arm-none-eabi/4.9.3/include/stdarg.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stdbool.h libxx.hxx \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/cxx/cstdlib \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stdlib.h
+libxx_newa.o: libxx_newa.cxx \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/nuttx/config.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/cxx/cstddef \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/nuttx/compiler.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stddef.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/sys/types.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stdint.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/arch/types.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/limits.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/arch/limits.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/debug.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/syslog.h \
+ /usr/lib/gcc/arm-none-eabi/4.9.3/include/stdarg.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stdbool.h libxx.hxx \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/cxx/cstdlib \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stdlib.h
+libxx_stdthrow.o: libxx_stdthrow.cxx \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/cxx/cstdlib \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/nuttx/config.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stdlib.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/nuttx/compiler.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/sys/types.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stdint.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/arch/types.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/limits.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/arch/limits.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/debug.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/syslog.h \
+ /usr/lib/gcc/arm-none-eabi/4.9.3/include/stdarg.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/stdbool.h
+libxx_cxa_guard.o: libxx_cxa_guard.cxx \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/nuttx/compiler.h \
+ /home/lbf/NB_LOT/NB-Iot/nuttx/include/nuttx/config.h

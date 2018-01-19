@@ -1,0 +1,98 @@
+#
+# For a description of the syntax of this configuration file,
+# see the file kconfig-language.txt in the NuttX tools repository.
+#
+
+config EXAMPLES_NB_IOT
+	bool "NB-Iot driver example"
+	default n
+	---help---
+		Enable the NB-Iot driversexample
+
+if EXAMPLES_NB_IOT
+
+config EXAMPLES_NB_IOT_PROGNAME
+	string "Program name"
+	default "NB-Iot"
+	depends on BUILD_KERNEL
+	---help---
+		This is the name of the program that will be use when the NSH ELF
+		program is installed.
+
+config EXAMPLES_NB_IOT_PRIORITY
+	int "NB-Iot task priority"
+	default 100
+
+config EXAMPLES_NB_IOT_STACKSIZE
+	int "NB-Iot stack size"
+	default 2048
+
+config EXAMPLES_NB_IOT_DEVPATH
+	string "NB-Iot device path"
+	default "/dev/ttyS3"
+	
+config EXAMPLES_LTE_EC20_DEVPATH
+	string "EC20 device path"
+	default "/dev/ttyS1"
+	
+config EXAMPLES_RS485A_DEVPATH
+	string "EC20 device path"
+	default "/dev/ttyS2"
+
+config EXAMPLES_RS485B_DEVPATH
+	string "EC20 device path"
+	default "/dev/ttyS4"	
+
+config EXAMPLES_CPU_RST_NB_DEVPATH
+	string "CPU_RST_NB device path"
+	default "/dev/gpout0"
+
+config EXAMPLES_NB_PWR_EN_0_DEVPATH
+	string "NB_PWR_EN_0 device path"
+	default "/dev/gpout1"
+
+config EXAMPLES_CPU_PWR_LTE_DEVPATH
+	string "CPU_PWR_LTE device path"
+	default "/dev/gpout2"
+
+config EXAMPLES_EEP_DEVPATH
+	string "EEP device path"
+	default "/dev/i2c1"
+	
+config EXAMPLES_CPU_RST_LTE_DEVPATH
+	string "CPU_RST_LTE device path"
+	default "/dev/gpout3"
+
+config EXAMPLES_LTE_PWR_EN_0_DEVPATH
+	string "LTE_PWR_EN_0 device path"
+	default "/dev/gpout4"
+
+config EXAMPLES_LTE_AP_READY_DEVPATH
+	string "LTE_AP_READY device path"
+	default "/dev/gpout5"
+
+config EXAMPLES_LTE_DTR_DEVPATH
+	string "LTE_DTR device path"
+	default "/dev/gpout6"
+
+config EXAMPLES_EE_WP_DEVPATH
+	string "EE_WP device path"
+	default "/dev/gpout7"
+
+config EXAMPLES_CPU_WDI_DEVPATH
+	string "CPU_WDI device path"
+	default "/dev/gpout8"
+
+config EXAMPLES_CPU_WD_EN_DEVPATH
+	string "CPU_WD_EN device path"
+	default "/dev/gpout9"
+	
+config EXAMPLES_GPIO_NB_UART_INT_DEVPATH
+	string "GPIO_NB_UART_INT device path"
+	default "/dev/gpint10"
+	
+config EXAMPLES_GPIO_LTE_UART_INT_DEVPATH
+	string "GPIO_LTE_UART_INT device path"
+	default "/dev/gpint11"	
+	
+endif # EXAMPLES_GPRS
