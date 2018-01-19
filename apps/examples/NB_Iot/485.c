@@ -30,6 +30,7 @@
 
 #define MAX_LEN_COMM_TRM_DATA 128
 
+
 UInt8 SRB = 0;
 /**
 * @brief  Status of received communication frame
@@ -292,9 +293,38 @@ rx_exception:
     ClearCommFrame();
     return; 
 }
+
+/**********************************
+*  new add by liubofei 2018-01-18
+*  get Led Temperature
+***********************************/
 void getLedTemperature()
 {
-
+	int 	iBytes = 0;
+	int     i = 0;
+	UInt8 senddate[] = {0xfe,0xfe,0xfe
+					   ,0x68,0x45
+					   ,0x00         //FG=00
+					   ,0x20         //CMD0 获取
+					   ,0x08			//CMD1 HEX
+					   ,0xC0,0x00     //GUID 主控默认A0 前端默认B0 后端 默认C0
+					   ,0x15          //读取温度
+					   ,0x30          //单位摄氏度
+					   ,0x01          //数据域如果没有任何数据L=0X01
+					   ,SRB           //SR 帧交互次数
+					   ,0xC8
+					   ,0x16       //end
+					   };
+	SRB  = (SRB+1)%16;
+	senddate[sizeof(senddate)-2] = 0;
+	for(i = 3;i< sizeof(senddate)-2;i++)
+	{
+		senddate[sizeof(senddate)-2] += senddate[i];
+		
+	}
+	printf("CS:0x%02x\n",senddate[sizeof(senddate)-2]);
+	iBytes = write(fd_485_USART[1],senddate,sizeof(senddate));
+	printf("fd_485_USARTA Write <%d>Bytes\n",iBytes);
 }
 void getBrightness()
 {
@@ -329,23 +359,51 @@ void getBaseTemperature()
 	printf("fd_485_USARTA Write <%d>Bytes\n",iBytes);
 }
 
-void getColorTemperature()
+/***********************************************
+*
+* changed by liubofei 2018-01-18
+* set main led ColorTemperature and Brightness
+*
+***********************************************/
+void setColorTemperatureBrightness(int led1,int led2,int led3,int led4)
 {
-		int 	iBytes = 0;
+	int 	iBytes = 0;
 	int     i = 0;
+	/*
+        UInt8 senddate[] = {0xfe,0xfe,0xfe
+                       ,0x68,0x45
+                       ,0x40         //FG=00
+                       ,0x20         //CMD0 获取
+                       ,0x08                        //CMD1 HEX
+                       ,0xC0,0x00     //GUID 主控默认A0 前端默认B0 后端 默认C0
+                       ,0x11          //读取色温
+                       ,0x30          //单位摄氏度
+                       ,0x01          //数据域如果没有任何数据L=0X01
+                       ,SRB           //SR 帧交互次数
+                       ,0xC8
+                       ,0x16       //end
+                       };
+
+					   */
+	//changed by liubofei 2018-01-18
+	//68 45 00 40 08 C0 00 43 00 04 DA CS 16
 	UInt8 senddate[] = {0xfe,0xfe,0xfe
 					   ,0x68,0x45
-					   ,0x40         //FG=00
-					   ,0x20         //CMD0 获取
+					   ,0x00         //FG=00
+					   ,0x40         //CMD0 SET
 					   ,0x08			//CMD1 HEX
 					   ,0xC0,0x00     //GUID 主控默认A0 前端默认B0 后端 默认C0
-					   ,0x11          //读取色温
-					   ,0x30          //单位摄氏度
-					   ,0x01          //数据域如果没有任何数据L=0X01
-					   ,SRB           //SR 帧交互次数
+					   ,0x43          //set main led 
+					   ,0x00         //
+					   ,0x04
+					   ,led1		// ColorTemperature High Bit
+					   ,led2		// ColorTemperature low Bit
+					   ,led3		// Brightness High Bit
+					   ,led4		// Brightness low Bit
 					   ,0xC8
 					   ,0x16       //end
 					   };
+	
 	SRB  = (SRB+1)%16;
 	senddate[sizeof(senddate)-2] = 0;
 	for(i = 3;i< sizeof(senddate)-2;i++)
@@ -353,6 +411,11 @@ void getColorTemperature()
 		senddate[sizeof(senddate)-2] += senddate[i];
 		
 	}
+	for(i = 0;i < sizeof(senddate);i++)
+	{
+		printf("%02X\t",senddate[i]);
+	}
+	
 	printf("CS:0x%02x\n",senddate[sizeof(senddate)-2]);
 	iBytes = write(fd_485_USART[1],senddate,sizeof(senddate));
 	printf("fd_485_USARTA Write <%d>Bytes\n",iBytes);
@@ -364,7 +427,7 @@ void getVoltage()
 	
 	UInt8 senddate[] = {0xfe,0xfe,0xfe
 					   ,0x68,0x45
-					   ,0x40         //FG=00
+					   ,0x00         //FG=00
 					   ,0x20         //CMD0 获取
 					   ,0x08			//CMD1 HEX
 					   ,0xC0,0x00     //GUID 主控默认A0 前端默认B0 后端 默认C0
@@ -397,7 +460,7 @@ void getCurrent()
 	int     i = 0;
 	UInt8 senddate[] = {0xfe,0xfe,0xfe
 					   ,0x68,0x45
-					   ,0x40         //FG=40
+					   ,0x00         //FG=00
 					   ,0x20         //CMD0 获取
 					   ,0x08			//CMD1 HEX
 					   ,0xC0,0x00     //GUID 主控默认A0 前端默认B0 后端 默认C0
@@ -420,11 +483,18 @@ void getCurrent()
 	printf("fd_485_USARTA Write <%d>Bytes\n",iBytes);
 }
 
+/***********************************************
+*
+* changed by liubofei 2018-01-18
+* set main led Switch
+*
+***********************************************/
 
-void setMainLEDSwitch()
+void setMainLEDSwitch(int ledonoff)
 {
 	int 	iBytes = 0;
 	int     i = 0;
+	/*
 	UInt8 senddate[] = {0xfe,0xfe,0xfe
 					   ,0x68,0x45
 					   ,0x40         //FG=00
@@ -438,6 +508,22 @@ void setMainLEDSwitch()
 					   ,0xC8
 					   ,0x16       //end
 					   };
+					   */
+	//changed by liubofei 2018-01-1				   	
+	UInt8 senddate[] = {0xfe,0xfe,0xfe
+					   ,0x68,0x45
+					   ,0x00         //FG=00
+					   ,0x40         //CMD0 下发
+					   ,0x08			//CMD1 HEX
+					   ,0xC0,0x00     //GUID 主控默认A0 前端默认B0 后端 默认C0
+					   ,ledonoff         //主灯关
+					   ,0x00          //单位 
+					   ,0x01          //数据域如果没有任何数据L=0X01
+					   ,SRB           //SR 帧交互次数
+					   ,0xC8
+					   ,0x16       //end
+					   };
+					   
 	SRB  = (SRB+1)%16;
 	senddate[sizeof(senddate)-2] = 0;
 	for(i = 3;i< sizeof(senddate)-2;i++)
@@ -445,15 +531,29 @@ void setMainLEDSwitch()
 		senddate[sizeof(senddate)-2] += senddate[i];
 		
 	}
+
+	for(i = 0;i < sizeof(senddate);i++)
+	{
+		printf("%02X\t",senddate[i]);
+	}
+
 	printf("CS:0x%02x\n",senddate[sizeof(senddate)-2]);
 	iBytes = write(fd_485_USART[1],senddate,sizeof(senddate));
 	printf("fd_485_USARTA Write <%d>Bytes\n",iBytes);
 
 }
-void setBLEDSwitch()
+
+/***********************************************
+*
+* changed by liubofei 2018-01-18
+* set bled Switch
+*
+***********************************************/
+void setBLEDSwitch(int ledonoff)
 {
 	int 	iBytes = 0;
 	int     i = 0;
+	/*
 	UInt8 senddate[] = {0xfe,0xfe,0xfe
 					   ,0x68,0x45
 					   ,0x40         //FG=00
@@ -467,6 +567,22 @@ void setBLEDSwitch()
 					   ,0xC8
 					   ,0x16       //end
 					   };
+					   */
+	//changed by liubofei 2018-01-18				   	
+	UInt8 senddate[] = {0xfe,0xfe,0xfe
+					   ,0x68,0x45
+					   ,0x00         //FG=00
+					   ,0x40         //CMD0 下发
+					   ,0x08			//CMD1 HEX
+					   ,0xC0,0x00     //GUID 主控默认A0 前端默认B0 后端 默认C0
+					   ,ledonoff          //辅灯关
+					   ,0x00          //单位 
+					   ,0x01          //数据域如果没有任何数据L=0X01
+					   ,SRB           //SR 帧交互次数
+					   ,0xC8
+					   ,0x16       //end
+					   };
+					   
 	SRB  = (SRB+1)%16;
 	senddate[sizeof(senddate)-2] = 0;
 	for(i = 3;i< sizeof(senddate)-2;i++)
@@ -480,6 +596,75 @@ void setBLEDSwitch()
 
 }
 
+
+/****************************
+* new add by liubofei 2018-01-18
+*
+* read 485 recv
+*
+***************************/
+int read_485_recv()
+{
+	fd_set 	rfds;	
+	int  	iRet = 0;
+	int  	iBytes = 0;
+    int     cnt = 0;
+	int     i;
+	struct timeval timeout;
+	char 	cArray[256];
+	
+	FD_ZERO(&rfds);											
+	FD_SET(fd_485_USART[0], &rfds);									
+	FD_SET(fd_485_USART[1], &rfds);
+	timeout.tv_sec = 5;
+	timeout.tv_usec = 0;
+
+	iRet = select(fd_max+1, &rfds, NULL, NULL, &timeout);  	//recv-timeout
+
+	if (iRet < 0) 
+	{
+		printf("select error!!!\n");
+	}
+	else if(iRet == 0)
+	{
+		printf("485 rcv timeout!!!\n");
+	}
+	else
+	{
+		if(FD_ISSET(fd_485_USART[0], &rfds)) 
+		{
+			usleep(100*1000L);                                     //sleep 100ms
+			memset(cArray, '\0', sizeof(cArray));
+			iBytes = read(fd_485_USART[0], cArray, sizeof(cArray));
+		    tcflush(fd_485_USART[0], TCIFLUSH);
+
+			printf("fd_485_USARTA  <%d>Read <%d>Bytes Data:%s\n",cnt++,iBytes,cArray);
+
+			for(i = 0; i < iBytes;i++)
+		    {
+		        comm2trm_RxUartData(cArray[i]);
+		    }
+			
+		}
+		else if(FD_ISSET(fd_485_USART[1], &rfds))
+		{
+			usleep(100*1000L);                                     //sleep 100ms
+			memset(cArray, '\0', sizeof(cArray));
+			iBytes = read(fd_485_USART[1], cArray, sizeof(cArray));
+		    tcflush(fd_485_USART[1], TCIFLUSH);
+
+			printf("fd_485_USARTB <%d>Read <%d>Bytes Data:%s\n",cnt++,iBytes,cArray);
+			for(i = 0; i < iBytes;i++)
+		    {
+		    	//printf("0x%02X \t",cArray[i]);
+		        comm2trm_RxUartData(cArray[i]);
+		    }
+		
+		}
+	}
+}
+
+/*****************/
 
 int _485(int argc, char *argv[])
 {
@@ -497,11 +682,87 @@ int _485(int argc, char *argv[])
 		
 		UInt8 ondate[] = {0xfe,0xfe,0xfe,0x68 ,0x45 ,0x00 ,0x20 ,0x08 ,0xC0 ,0x00 ,0x13 ,0x10 ,0x01 ,0x01 ,0xff ,0x16};
 		usleep(5000*1000L);
-		getBaseTemperature();
+
+/***************
+* for to test
+***************/
+
+	 //	getBaseTemperature();//OK
+
+	//	getVoltage();//OK
+	
+	//	getCurrent();//OK
+	
+	//new add by liubofei 2018-01-18
+	/*
+		setBLEDSwitch(0x45);//OK-->OFF
+		sleep(3);
+		setBLEDSwitch(0x44);//OK-->ON
+	*/
+	
+
+	//	getLedTemperature();//new add by liubofei 2018-01-18//OK
+
 		
-		//getVoltage();
-		//getCurrent();
-		//setBLEDSwitch();
+	/*
+		setMainLEDSwitch(0x42);//new add by liubofei 2018-01-18//OK--OFF
+		sleep(3);
+		setMainLEDSwitch(0x41);//new add by liubofei 2018-01-18//OK--ON
+	*/
+
+		int led1,led2,led3,led4,cnt;
+	  
+		setMainLEDSwitch(0x41);
+	  
+		read_485_recv();
+
+		int ledvalue = 100;
+#if 1
+		while(1)
+		{
+				for(cnt=0 ; cnt < 8;cnt ++)
+				{
+				    if (ledvalue > 1000)
+						ledvalue = 100;
+					
+					usleep(2000*1000L);
+					led3 = (ledvalue >> 8) & 0xff;
+					led4 = ledvalue & 0xff;
+					setColorTemperatureBrightness(0x02,0x00,led3,led4);//OK
+					ledvalue += 200;
+					read_485_recv();
+				}
+		}
+#else
+		while(1)
+		{	
+
+			#if 1
+				for(cnt=0 ; cnt < 8;cnt ++)
+				{
+				    if (ledvalue > 1000)
+						ledvalue = 100;
+					
+					usleep(2000*1000L);
+					led1 = (ledvalue >> 8) & 0xff;
+					led2 = ledvalue & 0xff;
+					setColorTemperatureBrightness(led1,led2,0x02,0x00);//OK
+					ledvalue += 200;
+					read_485_recv();
+				}
+			#endif
+				/*
+				usleep(2000*1000L);
+				setColorTemperatureBrightness(0x03,0x00,0x03,0x00);//100->256,200->512,300->768,400->1024
+				read_485_recv();
+				*/
+		}
+#endif		
+/**********
+*test end
+**********/
+	  //closed by liubofei 2018-01-18
+	  #if 0
 		FD_ZERO(&rfds);											
 		FD_SET(fd_485_USART[0], &rfds);									
 		FD_SET(fd_485_USART[1], &rfds);
@@ -551,6 +812,7 @@ int _485(int argc, char *argv[])
 			
 			}
 		}
+		#endif
 	}
 }
 
